@@ -3,36 +3,23 @@ using System;
 using Drive.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Drive.Database.Migrations
 {
     [DbContext(typeof(DriveContext))]
-    partial class DriveContextModelSnapshot : ModelSnapshot
+    [Migration("20220601103340_usersTool")]
+    partial class usersTool
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 63)
                 .HasAnnotation("ProductVersion", "5.0.10")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-            modelBuilder.Entity("BadgesUser", b =>
-                {
-                    b.Property<int>("BadgesId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("BadgesUsersId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("BadgesId", "BadgesUsersId");
-
-                    b.HasIndex("BadgesUsersId");
-
-                    b.ToTable("UserBadgesTable");
-                });
 
             modelBuilder.Entity("Drive.Database.Entities.Answer", b =>
                 {
@@ -52,21 +39,6 @@ namespace Drive.Database.Migrations
                     b.HasIndex("QuestionId");
 
                     b.ToTable("Answers");
-                });
-
-            modelBuilder.Entity("Drive.Database.Entities.Badges", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("BadgesName")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Badges");
                 });
 
             modelBuilder.Entity("Drive.Database.Entities.File", b =>
@@ -141,45 +113,12 @@ namespace Drive.Database.Migrations
                     b.Property<string>("PasswordHash")
                         .HasColumnType("text");
 
-                    b.Property<long>("Points")
-                        .HasColumnType("bigint");
-
                     b.Property<string>("Username")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("QuestionUser", b =>
-                {
-                    b.Property<long>("ErrorQuestionId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("ErrorUsersId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("ErrorQuestionId", "ErrorUsersId");
-
-                    b.HasIndex("ErrorUsersId");
-
-                    b.ToTable("UserErrorQuestions");
-                });
-
-            modelBuilder.Entity("BadgesUser", b =>
-                {
-                    b.HasOne("Drive.Database.Entities.Badges", null)
-                        .WithMany()
-                        .HasForeignKey("BadgesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Drive.Database.Entities.User", null)
-                        .WithMany()
-                        .HasForeignKey("BadgesUsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Drive.Database.Entities.Answer", b =>
@@ -200,21 +139,6 @@ namespace Drive.Database.Migrations
                         .HasForeignKey("FileId");
 
                     b.Navigation("File");
-                });
-
-            modelBuilder.Entity("QuestionUser", b =>
-                {
-                    b.HasOne("Drive.Database.Entities.Question", null)
-                        .WithMany()
-                        .HasForeignKey("ErrorQuestionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Drive.Database.Entities.User", null)
-                        .WithMany()
-                        .HasForeignKey("ErrorUsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Drive.Database.Entities.Question", b =>

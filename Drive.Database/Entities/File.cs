@@ -1,5 +1,4 @@
-﻿
-namespace Drive.Database.Entities
+﻿namespace Drive.Database.Entities
 {
     public class File
     {

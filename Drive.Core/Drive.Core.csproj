@@ -8,4 +8,13 @@
     <ProjectReference Include="..\Drive.Database\Drive.Database.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="System.IdentityModel.Tokens.Jwt" />
+    <None Remove="BCrypt.Net" />
+    <None Remove="BCrypt.Net-Next" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.17.0" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.2" />
+  </ItemGroup>
 </Project>

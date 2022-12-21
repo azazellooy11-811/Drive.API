@@ -1,5 +1,4 @@
-﻿
-namespace Drive.Core.Models
+﻿namespace Drive.Core.Models
 {
     public class UserFile
     {

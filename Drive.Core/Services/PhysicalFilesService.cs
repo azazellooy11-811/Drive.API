@@ -44,8 +44,8 @@ namespace Drive.Core.Services
 
         public async Task<string> Read(string path)
         {
-            using StreamReader sourceReader = File.OpenText(path);
-            string text = await sourceReader.ReadToEndAsync();
+            using var sourceReader = File.OpenText(path);
+            var text = await sourceReader.ReadToEndAsync();
             return text;
         }
     }

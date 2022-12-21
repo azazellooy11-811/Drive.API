@@ -12,6 +12,7 @@ namespace Drive.Core
             services.AddScoped<IFilesService, FilesService>();
             services.AddScoped<IPhysicalFilesService, PhysicalFilesService>();
             services.AddScoped<IQuestionsService, QuestionsService>();
+            services.AddScoped<IUserService, UserService>();
         }
     }
 }
